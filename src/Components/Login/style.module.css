@@ -1,0 +1,36 @@
+.homeLogo {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  width: 40%;
+}
+.loginBgColor {
+  background: #583d72;
+  height: 30%;
+  position: absolute;
+  width: 100%;
+}
+.loginCard {
+  border-radius: 0.4rem !important;
+  /* box-shadow: 10px 18px 20px #d1d9d6; */
+  display: inline-block;
+  margin-top: 20% !important;
+  width: 100%;
+  z-index: 1;
+}
+.loginCard h1 {
+  padding-bottom: 2rem;
+  text-align: center;
+}
+.login-form {
+  max-width: 100%;
+}
+.login-form-forgot {
+  float: right;
+}
+.ant-col-rtl .login-form-forgot {
+  float: left;
+}
+.login-form-button {
+  width: 100% !important;
+}

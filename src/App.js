@@ -1,25 +1,51 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import useAuth from "./Hooks/useAuth";
+import { ProvideAuth } from "./Hooks/useProvideAuth";
+import LoginClient from "./Components/Login";
+import TodoApp from "./Components/Todo";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ProvideAuth>
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/">
+              <LoginClient />
+            </Route>
+            <PrivateRoute path="/todo-app">
+              <TodoApp />
+            </PrivateRoute>
+          </Switch>
+        </div>
+      </Router>
+    </ProvideAuth>
   );
 }
 
-export default App;
+function PrivateRoute({ children, ...rest }) {
+  let auth = useAuth();
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        auth.user ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+              state: { from: location },
+            }}
+          />
+        )
+      }
+    />
+  );
+}
