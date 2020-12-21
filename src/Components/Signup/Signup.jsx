@@ -7,8 +7,18 @@ import styles from "../Login/style.module.css";
 import Axios from "axios";
 
 const Signup = () => {
-  const regUser = (values) => {
-    console.log("Received values of form: ", values);
+  const regUser = async (values) => {
+    Axios.post("http://localhost:3000/users", {
+      username: values.username,
+      email: values.email,
+      password: values.password,
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
