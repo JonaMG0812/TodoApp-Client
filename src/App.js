@@ -8,6 +8,7 @@ import {
 import useAuth from "./Hooks/useAuth";
 import { ProvideAuth } from "./Hooks/useProvideAuth";
 import LoginClient from "./Components/Login";
+import Signup from "./Components/Signup";
 import TodoApp from "./Components/Todo";
 
 export default function App() {
@@ -18,6 +19,9 @@ export default function App() {
           <Switch>
             <Route exact path="/">
               <LoginClient />
+            </Route>
+            <Route exact path="/signup">
+              <Signup />
             </Route>
             <PrivateRoute path="/todo-app">
               <TodoApp />
