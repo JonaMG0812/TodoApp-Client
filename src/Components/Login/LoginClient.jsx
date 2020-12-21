@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import { Form, Input, Button, Card, Row, Col } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import useAuth from "../../Hooks/useAuth";
@@ -26,7 +26,7 @@ const LoginClient = () => {
           <Card className={styles.loginCard}>
             <img src={home} className={styles.homeLogo} alt="logo" />
             <h1>Log In</h1>
-            <Form name="login" className="login-form" onFinish={onFinish}>
+            <Form name="login" className={styles.loginForm} onFinish={onFinish}>
               <Form.Item
                 name="username"
                 rules={[
@@ -60,11 +60,15 @@ const LoginClient = () => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  className="login-form-button"
+                  className={styles.loginFormButton}
                 >
                   Log in
                 </Button>
-                Or <a href="">register now!</a>
+                <Link to="/signup">
+                  <Button type="primary" className={styles.loginFormButton}>
+                    Signup
+                  </Button>
+                </Link>
               </Form.Item>
             </Form>
           </Card>
